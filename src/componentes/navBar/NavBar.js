@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -7,13 +8,17 @@ class NavBar extends React.Component {
   }
   render() {
     return (
-      <div>
-        <div>
-          <h1>Mi anime de preferencia-Jujutsu Kaisen</h1>
-          <a href="/">Character Detail</a>
-          <a href="/">About</a>
-        </div>
-      </div>
+      <nav>
+        <h1>
+          <Link to="/">Mi anime de preferencia-Jujutsu Kaisen</Link>
+        </h1>
+        <p>
+          <Link to="/charDetail">Character Detail</Link>
+        </p>
+        <p>
+          <Link to="/about">About</Link>
+        </p>
+      </nav>
     );
   }
 }

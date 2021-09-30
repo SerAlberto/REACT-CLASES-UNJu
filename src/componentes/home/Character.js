@@ -1,6 +1,15 @@
 import React from "react";
 
-class Character extends React.Component {
+export default function Character(props) {
+  return (
+    <div>
+      <img src={props.foto} alt="Foto" />
+      <h3>{props.nombre} </h3>
+    </div>
+  );
+}
+
+/* class Character extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -15,4 +24,4 @@ class Character extends React.Component {
   }
 }
 
-export default Character;
+export default Character; */

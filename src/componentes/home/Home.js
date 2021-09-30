@@ -1,5 +1,5 @@
 import React from "react";
-import JujutsuKaisen from "../../data.json";
+import { Link } from "react-router-dom";
 import Character from "./Character";
 
 class Home extends React.Component {
@@ -10,12 +10,14 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        {JujutsuKaisen.Characters.map((character) => {
+        {this.props.charactersInfo.map((character, index) => {
           return (
-            <Character
-              foto={character.foto}
-              nombre={`${character.nombre} ${character.apellido}`}
-            />
+            <Link key={index} to={`/charDetail/${character.id}`}>
+              <Character
+                foto={character.foto}
+                nombre={`${character.nombre} ${character.apellido}`}
+              />
+            </Link>
           );
         })}
       </div>
