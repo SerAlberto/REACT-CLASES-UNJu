@@ -4,23 +4,23 @@ import { useParams } from "react-router";
 export default function CharacterDetail(props) {
   const parametro = useParams();
 
-  const [detallePersonaje, setDetallePersonaje] = useState(
-    props.charactersInfo[0]
-  );
+  const [state, setState] = useState({
+    detallePersonaje: props.charactersInfo[0],
+  });
 
   useEffect(() => {
-    if (Object.keys(parametro).length === 0) {
-      setDetallePersonaje(props.charactersInfo[0]);
+    if (Object.keys(parametro).length !== 0) {
+      setState({ detallePersonaje: props.charactersInfo[parametro.id] });
     } else {
-      setDetallePersonaje(props.charactersInfo[parametro.id]);
+      setState({ detallePersonaje: props.charactersInfo[0] });
     }
   }, [parametro]);
 
   const mostrarDescripcion = (e) => {
-    setDetallePersonaje(() => {
-      return props.charactersInfo.find(
+    setState({
+      detallePersonaje: props.charactersInfo.find(
         (element) => element.id === parseInt(e.target.value)
-      );
+      ),
     });
   };
 
@@ -33,20 +33,21 @@ export default function CharacterDetail(props) {
               <option
                 key={index}
                 value={character.id}
+                selected={character.id === state.detallePersonaje?.id}
               >{`${character.nombre} ${character.apellido}`}</option>
             );
           })}
         </select>
       )}
       <div>
-        <h2>{`${detallePersonaje?.nombre} ${detallePersonaje?.apellido}`}</h2>
-        <img src={detallePersonaje?.foto} alt="imagen" />
+        <h2>{`${state.detallePersonaje?.nombre} ${state.detallePersonaje?.apellido}`}</h2>
+        <img src={state.detallePersonaje?.foto} alt="imagen" />
         <p>
-          {`Género ${detallePersonaje?.genero}, tiene ${detallePersonaje?.edad} años y mide
-            ${detallePersonaje?.altura} centímetros de altura`}
+          {`Género ${state.detallePersonaje?.genero}, tiene ${state.detallePersonaje?.edad} años y mide
+            ${state.detallePersonaje?.altura} centímetros de altura`}
         </p>
         <p>
-          {`Es ${detallePersonaje?.personalidad}, su habilidad especial es ${detallePersonaje?.habilidad} y su ocupación es ${detallePersonaje?.ocupacion}`}
+          {`Es ${state.detallePersonaje?.personalidad}, su habilidad especial es ${state.detallePersonaje?.habilidad} y su ocupación es ${state.detallePersonaje?.ocupacion}`}
         </p>
       </div>
     </div>
