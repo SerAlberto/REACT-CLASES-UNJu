@@ -1,0 +1,16 @@
+.carta-link {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.carta-link:hover {
+  box-shadow: 5px 10px 20px 3px rgba(153, 195, 0, 0.2);
+  transition: all 0.5s ease-out;
+  color: rgb(194, 255, 124);
+}
+
+.carta-link:active {
+  box-shadow: 5px 10px 20px 3px rgba(255, 255, 255, 0.2);
+  background-color: rgb(131, 131, 131);
+  color: rgb(0, 0, 0);
+}

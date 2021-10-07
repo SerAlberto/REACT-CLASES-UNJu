@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Character from "./Character";
+import { Row, Col, Container } from "react-bootstrap";
 
 class Home extends React.Component {
   constructor(props) {
@@ -9,7 +9,28 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Container className="mb-4">
+        <Row xs={1} md={2} xl={4} className="g-4">
+          {this.props.charactersInfo.map((character, index) => {
+            return (
+              <Col key={index}>
+                <Character
+                  foto={character.foto}
+                  nombre={`${character.nombre} ${character.apellido}`}
+                  id={character.id}
+                />
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
+    );
+  }
+}
+
+export default Home;
+
+/*<div>
         {this.props.charactersInfo.map((character, index) => {
           return (
             <Link key={index} to={`/charDetail/${character.id}`}>
@@ -20,9 +41,4 @@ class Home extends React.Component {
             </Link>
           );
         })}
-      </div>
-    );
-  }
-}
-
-export default Home;
+      </div>*/

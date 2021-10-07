@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Navbar, Container, Nav } from "react-bootstrap";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -8,9 +9,30 @@ class NavBar extends React.Component {
   }
   render() {
     return (
-      <nav>
+      <Navbar className="mb-4" bg="dark" variant="dark">
+        <Container>
+          <Link className="navbar-brand" to="/">
+            Jujutsu Kaisen
+          </Link>
+          <Nav className="mr-auto">
+            <Link className="nav-link" to="/charDetail">
+              Character Detail
+            </Link>
+            <Link className="nav-link" to="/about">
+              About
+            </Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    );
+  }
+}
+
+export default NavBar;
+
+/*<nav>
         <h1>
-          <Link to="/">Mi anime de preferencia-Jujutsu Kaisen</Link>
+          <Link to="/">Jujutsu Kaisen</Link>
         </h1>
         <p>
           <Link to="/charDetail">Character Detail</Link>
@@ -18,9 +40,4 @@ class NavBar extends React.Component {
         <p>
           <Link to="/about">About</Link>
         </p>
-      </nav>
-    );
-  }
-}
-
-export default NavBar;
+      </nav>*/

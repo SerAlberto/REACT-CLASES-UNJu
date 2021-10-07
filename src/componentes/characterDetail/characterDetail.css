@@ -1,0 +1,8 @@
+.carta-info {
+  border-radius: 40px;
+}
+
+.imagen-personaje {
+  border: 3px solid rgba(1, 22, 14, 0.2);
+  box-shadow: 5px 10px 20px 3px rgba(255, 255, 255, 0.2);
+}

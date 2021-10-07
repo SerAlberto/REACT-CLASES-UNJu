@@ -5,6 +5,7 @@ import Home from "./componentes/home/Home";
 import CharacterDetail from "./componentes/characterDetail/Character Detail";
 import About from "./componentes/about/About";
 import JujutsuKaisen from "./data.json";
+import { Container } from "react-bootstrap";
 
 export default function App() {
   const [charactersInfo, setCharactersInfo] = useState([]);
@@ -16,28 +17,29 @@ export default function App() {
   return (
     <>
       <NavBar />
+      <Container className="text-center">
+        <Switch>
+          <Route exact path="/">
+            <Home charactersInfo={charactersInfo} />
+          </Route>
 
-      <Switch>
-        <Route exact path="/">
-          <Home charactersInfo={charactersInfo} />
-        </Route>
+          <Route exact path="/charDetail">
+            <CharacterDetail charactersInfo={charactersInfo} />
+          </Route>
 
-        <Route exact path="/charDetail">
-          <CharacterDetail charactersInfo={charactersInfo} />
-        </Route>
+          <Route path="/charDetail/:id">
+            <CharacterDetail charactersInfo={charactersInfo} />
+          </Route>
 
-        <Route path="/charDetail/:id">
-          <CharacterDetail charactersInfo={charactersInfo} />
-        </Route>
+          <Route path="/about">
+            <About />
+          </Route>
 
-        <Route path="/about">
-          <About />
-        </Route>
-
-        <Route>
-          <h1> ERROR 404 NOT FOUND </h1>
-        </Route>
-      </Switch>
+          <Route>
+            <h1> ERROR 404 NOT FOUND </h1>
+          </Route>
+        </Switch>
+      </Container>
     </>
   );
 }

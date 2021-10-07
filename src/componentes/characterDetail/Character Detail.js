@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { Card, Image, Row } from "react-bootstrap";
+import "./characterDetail.css";
 
 export default function CharacterDetail(props) {
   const parametro = useParams();
@@ -25,9 +27,14 @@ export default function CharacterDetail(props) {
   };
 
   return (
-    <div>
+    <>
       {Object.keys(parametro).length === 0 && (
-        <select name="personajes" onChange={(e) => mostrarDescripcion(e)}>
+        <select
+          className="form-select mb-5 mx-auto"
+          style={{ width: "20rem" }}
+          name="personajes"
+          onChange={(e) => mostrarDescripcion(e)}
+        >
           {props.charactersInfo.map((character, index) => {
             return (
               <option
@@ -39,8 +46,35 @@ export default function CharacterDetail(props) {
           })}
         </select>
       )}
-      <div>
-        <h2>{`${state.detallePersonaje?.nombre} ${state.detallePersonaje?.apellido}`}</h2>
+      <Row>
+        <div className="col-12 col-xl-6 col-sm-12 mb-4">
+          <Image
+            className="imagen-personaje"
+            src={state.detallePersonaje?.foto}
+            alt="imagen"
+            roundedCircle
+          />
+        </div>
+        <div className="col-12 col-xl-6 col-sm-12">
+          <Card className="carta-info">
+            <Card.Header className="fs-4 text-light">{`${state.detallePersonaje?.nombre} ${state.detallePersonaje?.apellido}`}</Card.Header>
+            <Card.Body>
+              <Card.Text>
+                {`Género ${state.detallePersonaje?.genero}, tiene ${state.detallePersonaje?.edad} años y mide
+            ${state.detallePersonaje?.altura} centímetros de altura`}
+              </Card.Text>
+              <Card.Text>
+                {`Es ${state.detallePersonaje?.personalidad}, su habilidad especial es ${state.detallePersonaje?.habilidad} y su ocupación es ${state.detallePersonaje?.ocupacion}`}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+      </Row>
+    </>
+  );
+}
+
+/*<h2>{`${state.detallePersonaje?.nombre} ${state.detallePersonaje?.apellido}`}</h2>
         <img src={state.detallePersonaje?.foto} alt="imagen" />
         <p>
           {`Género ${state.detallePersonaje?.genero}, tiene ${state.detallePersonaje?.edad} años y mide
@@ -48,12 +82,7 @@ export default function CharacterDetail(props) {
         </p>
         <p>
           {`Es ${state.detallePersonaje?.personalidad}, su habilidad especial es ${state.detallePersonaje?.habilidad} y su ocupación es ${state.detallePersonaje?.ocupacion}`}
-        </p>
-      </div>
-    </div>
-  );
-}
-
+        </p>*/
 /* class CharacterDetail extends React.Component {
   constructor(props) {
     super(props);
